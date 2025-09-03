@@ -33,7 +33,15 @@ section {
   border: 1px solid #ccc;
   padding: 10px;
   width: 200px;
+  border-radius: 12px; /* bordas arredondadas */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* animação suave */
 }
+
+.card:hover {
+  transform: scale(1.1); /* aumenta em 10% */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* sombra para destacar */
+}
+
 
 .card img {
   width: 100%;
@@ -43,4 +51,16 @@ section {
 
 button {
   margin-top: 5px;
+  background-color: #fff; /* fundo branco */
+  color: #333; /* cor do texto */
+  border: 1px solid #ccc; /* borda cinza clara */
+  padding: 8px 16px; /* espaçamento interno */
+  border-radius: 20px; /* bordas arredondadas */
+  cursor: pointer; /* cursor de mãozinha */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: #f0f0f0; /* leve cinza no hover */
+  transform: scale(1.05); /* aumenta levemente */
 }
