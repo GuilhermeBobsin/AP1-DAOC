@@ -64,3 +64,30 @@ button:hover {
   background-color: #f0f0f0; /* leve cinza no hover */
   transform: scale(1.05); /* aumenta levemente */
 }
+
+#menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f5f5f5;
+  padding: 10px 20px;
+}
+
+.logo-texto {
+  font-size: 28px;
+  font-weight: bold;
+  color: #2c3e50;
+  font-family: 'Trebuchet MS', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+}
+
+#menu-nav button,
+#menu-nav select {
+  margin-left: 10px;
+  padding: 5px 10px;
+  border-radius: 8px;
+  border: 1px solid #100d0d;
+  cursor: pointer;
+}
