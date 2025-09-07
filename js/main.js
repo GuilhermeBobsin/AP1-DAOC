@@ -36,16 +36,20 @@ function montarMenu() {
   menuNav.appendChild(btnTodos);
 
   const sel = document.createElement("select");
+  sel.id = "categorias"; // 🔹 id para estilizar no CSS
+
   const opt = document.createElement("option");
   opt.value = "";
   opt.textContent = "Categorias";
   sel.appendChild(opt);
+
   categorias.forEach(c => {
     const o = document.createElement("option");
     o.value = c;
     o.textContent = c;
     sel.appendChild(o);
   });
+
   sel.onchange = async () => {
     if (sel.value) {
       todos = await pegarProdutosPorCategoria(sel.value);
@@ -60,6 +64,7 @@ function montarMenu() {
   btnFavs.onclick = () => mostrarPagina("favoritos");
   menuNav.appendChild(btnFavs);
 }
+
 
 function atualizar() {
   mostrarProdutos(todos, secProdutos, atualizar);
