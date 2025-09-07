@@ -8,6 +8,7 @@ export function criarCard(produto, atualizar) {
     <img src="${produto.image}" alt="">
     <h4>${produto.title}</h4>
     <p>R$ ${produto.price}</p>
+    
     <div class="botoes">
         <button class="btn-fav"></button>
         <button class="btn-detalhes">Ver mais</button>
