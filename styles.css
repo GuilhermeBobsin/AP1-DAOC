@@ -2,11 +2,19 @@ body {
   font-family: sans-serif;
   margin: 0;
   padding: 0;
-  
   min-height: 100vh;
+  transition: background 0.3s, color 0.3s;
 }
 
+body.escuro {
+  background: #000000;
+  color: #ffffff;
+}
 
+body.claro {
+  background: #ffffff;
+  color: #000000;
+}
 
 header {
   background: #8f8e8e;
@@ -42,11 +50,10 @@ section {
   overflow: hidden;
   background: #fff;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  transform-style: preserve-3d; /* necessário para efeito 3D */
-  perspective: 1000px; /* profundidade */
+  transform-style: preserve-3d;
+  perspective: 1000px;
 }
 
-/* Listras laterais */
 .card::before,
 .card::after {
   content: "";
@@ -58,29 +65,16 @@ section {
   transition: transform 0.3s ease;
 }
 
-.card::before {
-  left: 0;
-  transform: translateX(-100%);
-}
+.card::before { left: 0; transform: translateX(-100%); }
+.card::after { right: 0; transform: translateX(100%); }
 
-.card::after {
-  right: 0;
-  transform: translateX(100%);
-}
-
-/* Hover das listras */
 .card:hover::before,
-.card:hover::after {
-  transform: translateX(0);
-}
+.card:hover::after { transform: translateX(0); }
 
-/* Hover 3D do card */
 .card:hover {
   transform: scale(1.05) rotateX(5deg) rotateY(5deg);
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
 }
-
-
 
 .card img {
   width: 100%;
@@ -88,14 +82,15 @@ section {
   object-fit: contain;
 }
 
+/* Botões gerais */
 button {
-  margin-top: 3px;
+  margin: 5px;
+  padding: 8px 12px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
   background: linear-gradient(145deg, #ffffff, #f1f1f1);
   color: #333;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 30px;
-  cursor: pointer;
   font-size: 16px;
   font-weight: 600;
   transition: all 0.3s ease;
@@ -114,30 +109,65 @@ button:active {
   box-shadow: 0 3px 8px rgba(0,0,0,0.2);
 }
 
+body.escuro button { background: #333; color: #fff; }
+body.claro button { background: #ddd; color: #000; }
 
+.avaliacao {
+  color: gold;
+  display: flex;
+  align-items: center;
+  gap: 1vh;
+}
 
+.avaliacao span {
+  color: #000;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.popup-filtro {
+  position: absolute;
+  margin-top: 25vh;
+  margin-left: 35vh;
+  padding: 12px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px black;
+  display: flex;
+  width: 180px;
+}
+
+.popup-filtro input {
+  padding: 6px;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+}
+
+.popup-filtro button {
+  padding: 6px;
+  border: none;
+  border-radius: 4px;
+  background: #eee;
+}
+
+/* Menu */
 #menu {
   display: flex;
-  justify-content: space-between; 
-  align-items: center;           
+  justify-content: space-between;
+  align-items: center;
   background: black;
   padding: 12px 24px;
-  border-radius: 12px;            
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
-  
-  
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 #menu img {
-  max-width: 120px;   
-  height: auto;      
-  border-radius: 50%; 
-  object-fit: contain; 
-  justify-content: center; 
-  
+  max-width: 120px;
+  height: auto;
+  border-radius: 50%;
+  object-fit: contain;
+  justify-content: center;
 }
-
-
 
 #menu-nav button,
 #menu-nav select {
@@ -147,7 +177,6 @@ button:active {
   border: 1px solid #100d0d;
   cursor: pointer;
 }
-
 
 #categorias {
   margin-left: 12px;

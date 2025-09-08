@@ -1,19 +1,30 @@
 import { lerFavoritos, salvarFavoritos } from "./storage.js";
 
+function criarEstrelas(rate) {
+    const estrelas = Math.round(rate);
+    let html = "";
+    for (let i = 1; i <= 5; i++) {
+        html += i <= estrelas ? "⭐" : "☆";
+    }
+    return html;
+}
+
 export function criarCard(produto, atualizar) {
     const card = document.createElement("div");
     card.className = "card";
 
     card.innerHTML = `
-    <img src="${produto.image}" alt="">
-    <h4>${produto.title}</h4>
-    <p>R$ ${produto.price}</p>
-    
-    <div class="botoes">
-        <button class="btn-fav"></button>
-        <button class="btn-detalhes">Ver mais</button>
-    </div>
-  `;
+        <img src="${produto.image}" alt="">
+        <h4>${produto.title}</h4>
+        <p>R$ ${produto.price}</p>
+        <p class="avaliacao">${criarEstrelas(produto.rating.rate)} 
+           <span>(${produto.rating.count})</span>
+        </p>
+        <div class="acoes">
+            <button class="btn-fav"></button>
+            <button class="btn-detalhes">Ver mais</button>
+        </div>
+    `;
 
     const btnFav = card.querySelector(".btn-fav");
     const favs = lerFavoritos();
