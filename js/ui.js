@@ -1,21 +1,36 @@
 import { lerFavoritos, salvarFavoritos } from "./storage.js";
 
+function criarEstrelas(rate) {
+    const estrelas = Math.round(rate);
+    let html = "";
+    for (let i = 1; i <= 5; i++) {
+        html += i <= estrelas ? "⭐" : "☆";
+    }
+    return html;
+}
+
 export function criarCard(produto, atualizar) {
     const card = document.createElement("div");
     card.className = "card";
 
     card.innerHTML = `
-    <img src="${produto.image}" alt="">
-    <h4>${produto.title}</h4>
-    <p>R$ ${produto.price}</p>
-    <button></button>
-  `;
+        <img src="${produto.image}" alt="">
+        <h4>${produto.title}</h4>
+        <p>R$ ${produto.price}</p>
+        <p class="avaliacao">${criarEstrelas(produto.rating.rate)} 
+           <span>(${produto.rating.count})</span>
+        </p>
+        <div class="acoes">
+            <button class="btn-favorito"></button>
+            <button class="btn-detalhes">Detalhes</button>
+        </div>
+    `;
 
-    const btn = card.querySelector("button");
+    const btnFav = card.querySelector(".btn-favorito");
     const favs = lerFavoritos();
-    btn.textContent = favs.includes(produto.id) ? "Remover" : "Favoritar";
+    btnFav.textContent = favs.includes(produto.id) ? "Remover" : "Favoritar";
 
-    btn.onclick = () => {
+    btnFav.onclick = () => {
         let lista = lerFavoritos();
         if (lista.includes(produto.id)) {
             lista = lista.filter(id => id !== produto.id);
@@ -24,6 +39,11 @@ export function criarCard(produto, atualizar) {
         }
         salvarFavoritos(lista);
         atualizar();
+    };
+
+    const btnDet = card.querySelector(".btn-detalhes");
+    btnDet.onclick = () => {
+        window.location.href = `detalhes.html?id=${produto.id}`;
     };
 
     return card;
