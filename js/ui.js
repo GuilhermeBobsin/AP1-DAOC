@@ -21,12 +21,12 @@ export function criarCard(produto, atualizar) {
            <span>(${produto.rating.count})</span>
         </p>
         <div class="acoes">
-            <button class="btn-favorito"></button>
-            <button class="btn-detalhes">Detalhes</button>
+            <button class="btn-fav"></button>
+            <button class="btn-detalhes">Ver mais</button>
         </div>
     `;
 
-    const btnFav = card.querySelector(".btn-favorito");
+    const btnFav = card.querySelector(".btn-fav");
     const favs = lerFavoritos();
     btnFav.textContent = favs.includes(produto.id) ? "Remover" : "Favoritar";
 
@@ -41,8 +41,8 @@ export function criarCard(produto, atualizar) {
         atualizar();
     };
 
-    const btnDet = card.querySelector(".btn-detalhes");
-    btnDet.onclick = () => {
+    const btnDetalhes = card.querySelector(".btn-detalhes");
+    btnDetalhes.onclick = () => {
         window.location.href = `detalhes.html?id=${produto.id}`;
     };
 

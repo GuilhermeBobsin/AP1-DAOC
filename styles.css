@@ -2,10 +2,22 @@ body {
   font-family: sans-serif;
   margin: 0;
   padding: 0;
+  min-height: 100vh;
+  transition: background 0.3s, color 0.3s;
+}
+
+body.escuro {
+  background: #000000;
+  color: #ffffff;
+}
+
+body.claro {
+  background: #ffffff;
+  color: #000000;
 }
 
 header {
-  background: #222;
+  background: #8f8e8e;
   color: #fff;
   padding: 10px;
   display: flex;
@@ -30,9 +42,38 @@ section {
 }
 
 .card {
+  position: relative;
   border: 1px solid #ccc;
   padding: 10px;
   width: 200px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.card::before,
+.card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 5px;
+  height: 100%;
+  background: linear-gradient(to bottom, #b4bcc5, #030303);
+  transition: transform 0.3s ease;
+}
+
+.card::before { left: 0; transform: translateX(-100%); }
+.card::after { right: 0; transform: translateX(100%); }
+
+.card:hover::before,
+.card:hover::after { transform: translateX(0); }
+
+.card:hover {
+  transform: scale(1.05) rotateX(5deg) rotateY(5deg);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
 }
 
 .card img {
@@ -41,8 +82,47 @@ section {
   object-fit: contain;
 }
 
+/* Botões gerais */
 button {
-  margin-top: 5px;
+  margin: 5px;
+  padding: 8px 12px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  background: linear-gradient(145deg, #ffffff, #f1f1f1);
+  color: #333;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+button:hover {
+  background: linear-gradient(145deg, #333, #555);
+  color: #fff;
+  transform: scale(1.08);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+}
+
+button:active {
+  transform: scale(0.95);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+}
+
+body.escuro button { background: #333; color: #fff; }
+body.claro button { background: #ddd; color: #000; }
+
+.avaliacao {
+  color: gold;
+  display: flex;
+  align-items: center;
+  gap: 1vh;
+}
+
+.avaliacao span {
+  color: #000;
+  font-weight: bold;
+  font-size: 12px;
 }
 
 .popup-filtro {
@@ -70,47 +150,55 @@ button {
   background: #eee;
 }
 
-body {
-  transition: background 0.3s, color 0.3s;
-}
-
-body.escuro {
-  background: #000000;
-  color: #ffffff;
-}
-
-body.claro {
-  background: #ffffff;
-  color: #000000;
-}
-
-button {
-  margin: 5px;
-  padding: 8px 12px;
-  border: none;
-  cursor: pointer;
-  border-radius: 4px;
-}
-
-body.escuro button {
-  background: #333;
-  color: #fff;
-}
-
-body.claro button {
-  background: #ddd;
-  color: #000;
-}
-
-.avaliacao {
-  color: gold;
+/* Menu */
+#menu {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 1vh;
+  background: black;
+  padding: 12px 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-.avaliacao span {
-  color:#000;
-  font-weight: bold;
-  font-size: 12px;
+#menu img {
+  max-width: 120px;
+  height: auto;
+  border-radius: 50%;
+  object-fit: contain;
+  justify-content: center;
+}
+
+#menu-nav button,
+#menu-nav select {
+  margin-left: 10px;
+  padding: 5px 10px;
+  border-radius: 8px;
+  border: 1px solid #100d0d;
+  cursor: pointer;
+}
+
+#categorias {
+  margin-left: 12px;
+  padding: 10px 16px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  background: linear-gradient(135deg, #ffffff, #f3f3f3);
+  color: #333;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+#categorias:hover {
+  border-color: #888;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+
+#categorias:focus {
+  outline: none;
+  border-color: gray;
+  box-shadow: 0 0 6px rgba(89, 89, 90, 0.6);
 }
