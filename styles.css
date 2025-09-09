@@ -1,4 +1,3 @@
-/* Reset e fontes */
 * {
   margin: 0;
   padding: 0;
@@ -6,78 +5,86 @@
 }
 
 body {
-  font-family: 'Segoe UI', sans-serif;
-  background: #f0f2f5;
-  color: #111;
-  transition: 0.3s;
-}
-
-/* Tema escuro */
-body.escuro {
+  font-family: 'Inter', sans-serif;
   background: #121212;
-  color: #f0f0f0;
+  color: #e0e0e0;
+  transition: .3s;
 }
 
-/* Header */
+body.claro {
+  background: #f5f5f5;
+  color: #111;
+}
+
+.loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, .5);
+  color: #fff;
+  font-size: 24px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
 header#menu {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
   align-items: center;
-  padding: 12px 24px;
+  padding: 12px;
+  background: #1c1c1c;
+  border-bottom: 1px solid #333;
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: linear-gradient(135deg, #ff6a00, #ee0979);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
-  border-radius: 0 0 16px 16px;
 }
 
-header#menu img#logo {
-  height: 50px;
-  border-radius: 8px;
-  transition: 0.2s;
+body.claro header#menu {
+  background: #fff;
+  border-color: #ddd;
 }
 
-header#menu img#logo:hover {
-  transform: scale(1.1);
-}
-
-/* Menu */
-#menu-nav {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  align-items: center;
-}
-
-#menu-nav button,
-#menu-nav select {
+header#menu button,
+header#menu select {
   padding: 8px 14px;
-  border-radius: 12px;
   border: none;
+  border-radius: 10px;
   cursor: pointer;
   font-weight: 600;
-  background: linear-gradient(145deg, #fff, #e0e0e0);
-  color: #333;
-  transition: 0.3s;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  background: #2a2a2a;
+  color: #e0e0e0;
+  transition: .2s;
 }
 
-body.escuro #menu-nav button,
-body.escuro #menu-nav select {
-  background: linear-gradient(145deg, #333, #222);
-  color: #fff;
+body.claro header#menu button,
+body.claro header#menu select {
+  background: #f0f0f0;
+  color: #111;
 }
 
-#menu-nav button:hover,
-#menu-nav select:hover {
+header#menu button:hover,
+header#menu select:hover {
+  background: #3a3a3a;
   transform: scale(1.05);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* Seções e cards */
+body.claro header#menu button:hover,
+body.claro header#menu select:hover {
+  background: #e0e0e0;
+}
+
 main {
+  display: flex;
+  gap: 20px;
   padding: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 section {
@@ -88,39 +95,36 @@ section {
 }
 
 .card {
-  background: #fff;
-  border-radius: 16px;
+  background: #1f1f1f;
+  border-radius: 12px;
   width: 220px;
   padding: 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-  transition: 0.3s;
-  position: relative;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, .3);
+  transition: .3s;
+  text-align: center;
 }
 
-body.escuro .card {
-  background: #1e1e1e;
+body.claro .card {
+  background: #fff;
+  color: #111;
 }
 
 .card:hover {
-  transform: translateY(-8px) scale(1.03);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, .5);
 }
 
 .card img {
   width: 100%;
   height: 150px;
   object-fit: contain;
-  border-radius: 12px;
-  transition: 0.3s;
-}
-
-.card img:hover {
-  transform: scale(1.05);
+  margin-bottom: 8px;
+  border-radius: 8px;
 }
 
 .card h4 {
   font-size: 16px;
-  margin: 8px 0;
+  margin: 6px 0;
   font-weight: 600;
 }
 
@@ -131,7 +135,7 @@ body.escuro .card {
 
 .avaliacao {
   display: flex;
-  align-items: center;
+  justify-content: center;
   gap: 4px;
   font-size: 14px;
   margin: 6px 0;
@@ -141,7 +145,6 @@ body.escuro .card {
   font-weight: 600;
 }
 
-/* Botões dentro do card */
 .acoes {
   display: flex;
   gap: 8px;
@@ -152,71 +155,132 @@ body.escuro .card {
   flex: 1;
   padding: 6px 0;
   border: none;
-  border-radius: 12px;
+  border-radius: 10px;
   cursor: pointer;
   font-weight: 600;
-  background: linear-gradient(135deg, #ff6a00, #ee0979);
+  background: #007bff;
   color: #fff;
-  transition: 0.3s;
+  transition: .2s;
 }
 
 .acoes button:hover {
-  transform: scale(1.05);
-  background: linear-gradient(135deg, #ee0979, #ff6a00);
+  background: #0056b3;
 }
 
-/* Popups filtros */
-.popup-filtro {
-  position: absolute;
-  top: 60px;
-  right: 0;
-  background: #fff;
+.card-detalhe {
+  width: 90%;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: left;
+  background: #1f1f1f;
   padding: 16px;
   border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
-  display: none;
-  width: 220px;
-  z-index: 999;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, .3);
 }
 
-body.escuro .popup-filtro {
-  background: #2a2a2a;
-  color: #fff;
+body.claro .card-detalhe {
+  background: #fff;
+  color: #111;
 }
 
-.popup-filtro input,
-.popup-filtro button {
+.card-detalhe img {
   width: 100%;
-  margin-top: 6px;
-  padding: 8px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
+  height: 300px;
+  object-fit: contain;
+  margin-bottom: 12px;
 }
 
-.popup-filtro button {
-  background: linear-gradient(135deg, #ff6a00, #ee0979);
-  color: #fff;
-  border: none;
-  font-weight: 600;
+.card-detalhe h2 {
+  font-size: 22px;
+  margin-bottom: 12px;
 }
 
-.popup-filtro button:hover {
-  background: linear-gradient(135deg, #ee0979, #ff6a00);
+.vazio {
+  text-align: center;
+  width: 100%;
+  font-size: 16px;
+  color: gray;
+  margin-top: 20px;
 }
 
-/* Escondido */
-.escondido {
-  display: none;
-}
-
-/* Responsividade simples */
-@media(max-width:600px) {
-  section {
+@media(max-width:800px) {
+  main {
     flex-direction: column;
     align-items: center;
+  }
+
+  .filtros {
+    width: 90%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
   .card {
     width: 90%;
   }
+
+  .card-detalhe img {
+    height: 250px;
+  }
+}
+
+.popup-filtro {
+  position: absolute;
+  top: 60px;  
+  right: 20px;
+  background: #1f1f1f;
+  color: #e0e0e0;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,.5);
+  display: none;
+  width: 240px;
+  z-index: 999;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+body.claro .popup-filtro {
+  background: #fff;
+  color: #111;
+}
+
+.popup-filtro label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.popup-filtro input,
+.popup-filtro select {
+  padding: 6px;
+  border-radius: 6px;
+  border: none;
+  margin-top: 4px;
+  background: #2a2a2a;
+  color: #e0e0e0;
+}
+
+body.claro .popup-filtro input,
+body.claro .popup-filtro select {
+  background: #f0f0f0;
+  color: #111;
+}
+
+.popup-filtro button {
+  padding: 8px;
+  border: none;
+  border-radius: 8px;
+  background: #007bff;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: 6px;
+  width: 100%;
+  transition: .2s;
+}
+
+.popup-filtro button:hover {
+  background: #0056b3;
 }
