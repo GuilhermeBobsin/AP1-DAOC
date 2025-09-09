@@ -95,6 +95,9 @@ section {
 }
 
 .card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background: #1f1f1f;
   border-radius: 12px;
   width: 220px;
@@ -147,18 +150,20 @@ body.claro .card {
 
 .acoes {
   display: flex;
-  gap: 8px;
-  margin-top: 8px;
+  gap: 8px;           /* espaço entre os botões */
+  margin-top: auto;    /* faz "grudar" no final do card */
+  justify-content: center; /* centraliza os botões */
 }
+
 
 .acoes button {
   flex: 1;
-  padding: 6px 0;
+  padding: 8px 8px;
   border: none;
   border-radius: 10px;
   cursor: pointer;
   font-weight: 600;
-  background: #007bff;
+  background: #207ee2b7;
   color: #fff;
   transition: .2s;
 }
