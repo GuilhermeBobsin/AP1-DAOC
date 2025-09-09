@@ -7,12 +7,13 @@ const secProdutos = document.getElementById("pagina-produtos");
 const secFavs = document.getElementById("pagina-favoritos");
 const loading = document.getElementById("loading");
 
-let todos = [], categorias = [], filtroMin = null, filtroMax = null, filtroAvaliacao = null;
+let todosProdutos = [], todos = [], categorias = [], filtroMin = null, filtroMax = null, filtroAvaliacao = null;
 
 async function carregar() {
   loading.style.display = "flex";
   categorias = await pegarCategorias();
-  todos = await pegarProdutos();
+  todosProdutos = await pegarProdutos();
+  todos = [...todosProdutos];
   montarMenu();
   montarFiltros();
   aplicarTema(lerTema());
@@ -33,22 +34,30 @@ function mostrarPagina(nome) {
   if (nome === "favoritos") secFavs.classList.remove("escondido");
 }
 
+const traducoesCategorias = {
+  "electronics": "Eletrônicos",
+  "jewelery": "Joias",
+  "men's clothing": "Roupas masculinas",
+  "women's clothing": "Roupas femininas"
+};
+
 function montarMenu() {
   menu.innerHTML = "";
 
   const btnTodos = document.createElement("button");
   btnTodos.textContent = "Todos";
-  btnTodos.onclick = async () => {
-    todos = await pegarProdutos();
+  btnTodos.onclick = () => {
+    todos = [...todosProdutos];
     atualizar();
     mostrarPagina("produtos");
   }
   menu.appendChild(btnTodos);
 
   const sel = document.createElement("select");
-  sel.innerHTML = `<option value="">Categorias</option>` + categorias.map(c => `<option value="${c}">${c}</option>`).join('');
+  sel.innerHTML = `<option value="">Categorias</option>` + categorias.map(c => `<option value="${c}">${traducoesCategorias[c] || c}</option>`).join('');
   sel.onchange = async () => {
     if (sel.value) todos = await pegarProdutosPorCategoria(sel.value);
+    else todos = [...todosProdutos];
     atualizar();
     mostrarPagina("produtos");
   }
@@ -66,15 +75,19 @@ function montarMenu() {
 }
 
 function montarFiltros() {
+  const filtroContainer = document.createElement("div");
+  filtroContainer.style.position = "relative";
+  filtroContainer.style.display = "inline-block";
+
   const btnFiltro = document.createElement("button");
   btnFiltro.textContent = "Filtros";
-  menu.appendChild(btnFiltro);
+  filtroContainer.appendChild(btnFiltro);
 
   const divFiltro = document.createElement("div");
   divFiltro.className = "popup-filtro";
   divFiltro.innerHTML = `
-    <label>Preço mínimo: <input type="number" id="min-preco" placeholder="R$"></label>
-    <label>Preço máximo: <input type="number" id="max-preco" placeholder="R$"></label>
+    <label>Preço mínimo: <input type="double" id="min-preco" placeholder="R$"></label>
+    <label>Preço máximo: <input type="double" id="max-preco" placeholder="R$"></label>
     <label>Avaliação:
       <select id="sel-avaliacao">
         <option value="">Todas</option>
@@ -85,33 +98,36 @@ function montarFiltros() {
     <button id="btn-aplicar">Aplicar</button>
     <button id="btn-limpar">Limpar</button>
   `;
-  menu.appendChild(divFiltro);
+  filtroContainer.appendChild(divFiltro);
+  menu.appendChild(filtroContainer);
 
   btnFiltro.onclick = () => {
     divFiltro.style.display = divFiltro.style.display === "block" ? "none" : "block";
   };
 
-  document.getElementById("btn-aplicar").onclick = () => {
-    const min = document.getElementById("min-preco").value;
-    const max = document.getElementById("max-preco").value;
-    const aval = document.getElementById("sel-avaliacao").value;
-    filtroMin = min ? +min : null;
-    filtroMax = max ? +max : null;
-    filtroAvaliacao = aval || null;
-    atualizar();
-    divFiltro.style.display = "none"; 
-  };
+  const btnAplicar = divFiltro.querySelector("#btn-aplicar");
+  const btnLimpar = divFiltro.querySelector("#btn-limpar");
+  const inputMin = divFiltro.querySelector("#min-preco");
+  const inputMax = divFiltro.querySelector("#max-preco");
+  const selAval = divFiltro.querySelector("#sel-avaliacao");
 
-  document.getElementById("btn-limpar").onclick = () => {
+  btnAplicar.onclick = () => {
+    filtroMin = inputMin.value ? +inputMin.value : null;
+    filtroMax = inputMax.value ? +inputMax.value : null;
+    filtroAvaliacao = selAval.value || null;
+    atualizar();
+    divFiltro.style.display = "none";
+  }
+
+  btnLimpar.onclick = () => {
     filtroMin = filtroMax = filtroAvaliacao = null;
-    document.getElementById("min-preco").value = "";
-    document.getElementById("max-preco").value = "";
-    document.getElementById("sel-avaliacao").value = "";
+    inputMin.value = "";
+    inputMax.value = "";
+    selAval.value = "";
     atualizar();
-    divFiltro.style.display = "none"; 
-  };
+    divFiltro.style.display = "none";
+  }
 }
-
 
 function atualizar() {
   let lista = [...todos];
@@ -122,8 +138,8 @@ function atualizar() {
 
   mostrarProdutos(lista, secProdutos, atualizar);
 
-  const favIds = JSON.parse(localStorage.getItem("favoritos")) || [];
-  const favs = todos.filter(p => favIds.includes(p.id));
+  const favIds = lerFavoritos();
+  const favs = todosProdutos.filter(p => favIds.includes(p.id));
   mostrarProdutos(favs, secFavs, atualizar);
 }
 

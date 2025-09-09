@@ -4,6 +4,13 @@ import { pegarProdutos } from "./api.js";
 const menu = document.getElementById("menu");
 const loading = document.getElementById("loading");
 
+menu.innerHTML = `
+  <button id="btn-voltar">← Voltar</button>
+  <h1>Detalhes do Produto</h1>
+`;
+
+document.getElementById("btn-voltar").onclick = () => window.location.href = "index.html";
+
 function aplicarTema(tema) {
   document.body.classList.remove("claro", "escuro");
   document.body.classList.add(tema);

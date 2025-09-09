@@ -232,8 +232,9 @@ body.claro .card-detalhe {
 
 .popup-filtro {
   position: absolute;
-  top: 60px;
-  right: 20px;
+  top: 100%;
+  left: 0;
+  margin-top: 4px;
   background: #1f1f1f;
   color: #e0e0e0;
   padding: 16px;
@@ -245,6 +246,7 @@ body.claro .card-detalhe {
   font-size: 14px;
   transition: 0.3s;
 }
+
 
 body.claro .popup-filtro {
   background: #fff;
@@ -288,4 +290,86 @@ body.claro .popup-filtro select {
 
 .popup-filtro button:hover {
   background: #0056b3;
+}
+
+.escondido {
+  display: none;
+}
+
+header#menu {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  background: #1c1c1c;
+  border-bottom: 1px solid #333;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  flex-wrap: wrap;
+}
+
+body.claro header#menu {
+  background: #fff;
+  border-color: #ddd;
+}
+
+header#menu button,
+header#menu select {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  background: #2a2a2a;
+  color: #e0e0e0;
+  transition: .2s;
+}
+
+body.claro header#menu button,
+body.claro header#menu select {
+  background: #f0f0f0;
+  color: #111;
+}
+
+header#menu button:hover,
+header#menu select:hover {
+  background: #3a3a3a;
+  transform: scale(1.05);
+}
+
+body.claro header#menu button:hover,
+body.claro header#menu select:hover {
+  background: #e0e0e0;
+}
+
+header#menu h1 {
+  font-size: 20px;
+  margin: 0;
+  flex: 1;
+  text-align: center;
+}
+
+#btn-voltar {
+  padding: 8px 12px;
+  font-size: 16px;
+  background: #207ee2b7;
+  color: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: .2s;
+}
+
+#btn-voltar:hover {
+  background: #0056b3;
+}
+
+main {
+  display: flex;
+  gap: 20px;
+  padding: 100px 20px 20px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
