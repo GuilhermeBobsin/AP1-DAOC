@@ -22,7 +22,7 @@ export function criarCard(produto, atualizar) {
     const btnFav = card.querySelector(".btn-fav");
     const favs = lerFavoritos();
 
-       if (favs.includes(produto.id)) {
+    if (favs.includes(produto.id)) {
         btnFav.textContent = "Remover";
         btnFav.classList.add("remover");
     } else {
