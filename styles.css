@@ -7,10 +7,9 @@
 body {
   font-family: 'Inter', sans-serif;
   color: #e0e0e0;
+  background-color: #121212;
   transition: .3s;
   position: relative;
-
-  background-color: #121212;
 }
 
 body::before {
@@ -33,20 +32,10 @@ body.claro {
 }
 
 body.claro::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
   background: url('./img/logo.png') no-repeat center center;
   background-size: contain;
   opacity: 0.2;
-  pointer-events: none;
-  z-index: -1;
 }
-
-
 
 .loading {
   position: fixed;
@@ -69,11 +58,12 @@ header#menu {
   justify-content: center;
   gap: 10px;
   align-items: center;
-  padding: 12px;
+  padding: 12px 20px;
   background: #1c1c1c;
   border-bottom: 1px solid #333;
-  position: sticky;
+  position: fixed;
   top: 0;
+  width: 100%;
   z-index: 1000;
 }
 
@@ -114,7 +104,7 @@ body.claro header#menu select:hover {
 main {
   display: flex;
   gap: 20px;
-  padding: 20px;
+  padding: 100px 20px 20px;
   flex-wrap: wrap;
   justify-content: center;
 }
@@ -145,13 +135,11 @@ body.claro .card {
   color: #111;
 }
 
-
 .card:hover {
   border-color: rgba(255, 255, 255, 0.4);
   transform: translateY(-5px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, .5);
 }
-
 
 .card img {
   width: 100%;
@@ -191,10 +179,9 @@ body.claro .card {
   justify-content: center;
 }
 
-
 .acoes button {
   flex: 1;
-  padding: 8px 8px;
+  padding: 8px;
   border: none;
   border-radius: 10px;
   cursor: pointer;
@@ -206,6 +193,15 @@ body.claro .card {
 
 .acoes button:hover {
   background: #0056b3;
+}
+
+/* Botão favoritar separado */
+.btn-fav.remover {
+  background-color: #e63946;
+}
+
+.btn-fav.remover:hover {
+  background-color: #c1121f;
 }
 
 .card-detalhe {
@@ -236,34 +232,20 @@ body.claro .card-detalhe {
   margin-bottom: 12px;
 }
 
-.vazio {
-  text-align: center;
-  width: 100%;
+#btn-voltar {
+  padding: 8px 12px;
   font-size: 16px;
-  color: gray;
-  margin-top: 20px;
+  background: #207ee2b7;
+  color: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: .2s;
+  display: block;
+  margin: 12px auto;
 }
 
-@media(max-width:800px) {
-  main {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .filtros {
-    width: 90%;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .card {
-    width: 90%;
-  }
-
-  .card-detalhe img {
-    height: 250px;
-  }
+#btn-voltar:hover {
+  background: #0056b3;
 }
 
 .popup-filtro {
@@ -280,9 +262,8 @@ body.claro .card-detalhe {
   width: 240px;
   z-index: 999;
   font-size: 14px;
-  transition: 0.3s;
+  transition: .3s;
 }
-
 
 body.claro .popup-filtro {
   background: #fff;
@@ -332,99 +313,17 @@ body.claro .popup-filtro select {
   display: none;
 }
 
-header#menu {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 20px;
-  background: #1c1c1c;
-  border-bottom: 1px solid #333;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-  flex-wrap: wrap;
-}
+@media(max-width:800px) {
+  main {
+    flex-direction: column;
+    align-items: center;
+  }
 
-body.claro header#menu {
-  background: #fff;
-  border-color: #ddd;
-}
+  .card {
+    width: 90%;
+  }
 
-header#menu button,
-header#menu select {
-  padding: 8px 14px;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  font-weight: 600;
-  background: #2a2a2a;
-  color: #e0e0e0;
-  transition: .2s;
+  .card-detalhe img {
+    height: 250px;
+  }
 }
-
-body.claro header#menu button,
-body.claro header#menu select {
-  background: #f0f0f0;
-  color: #111;
-}
-
-header#menu button:hover,
-header#menu select:hover {
-  background: #3a3a3a;
-  transform: scale(1.05);
-}
-
-body.claro header#menu button:hover,
-body.claro header#menu select:hover {
-  background: #e0e0e0;
-}
-
-header#menu h1 {
-  font-size: 20px;
-  margin: 0;
-  flex: 1;
-  text-align: center;
-}
-
-#btn-voltar {
-  padding: 8px 12px;
-  font-size: 16px;
-  background: #207ee2b7;
-  color: #fff;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: .2s;
-}
-
-#btn-voltar:hover {
-  background: #0056b3;
-}
-
-main {
-  display: flex;
-  gap: 20px;
-  padding: 100px 20px 20px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.btn-fav {
-  background-color: #008cff;
-  color: white;
-  border: none;
-  padding: 8px 14px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.btn-fav.remover {
-  background-color: #e63946;
-}
-
-.btn-fav.remover:hover {
-  background-color: #c1121f;
-}
-

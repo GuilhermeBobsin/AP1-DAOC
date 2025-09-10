@@ -37,7 +37,6 @@ function mostrarPagina(nome) {
   if (nome === "detalhes") document.getElementById("pagina-detalhes").classList.remove("escondido");
 }
 
-
 const traducoesCategorias = {
   "electronics": "Eletrônicos",
   "jewelery": "Joias",
