@@ -1,4 +1,4 @@
-# Loja dos Guri
+# Os Guri Shoop
 
 Uma aplicação simples de e-commerce construída com **JavaScript Vanilla**, que consome a **Fake Store API** para listar produtos, exibir detalhes e permitir favoritar itens diretamente no navegador.
 
