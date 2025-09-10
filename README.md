@@ -1,3 +1,7 @@
+**      Marcelo Da Silva Carniel
+**      Guilherme Trevisan Bobsin
+**      Régis Bopsin Da Luz
+
 # Os Guri Shoop
 
 Uma aplicação simples de e-commerce construída com **JavaScript Vanilla**, que consome a **Fake Store API** para listar produtos, exibir detalhes e permitir favoritar itens diretamente no navegador.
@@ -43,3 +47,12 @@ Abra o arquivo index.html no navegador de sua preferência.
 -CSS3 (responsividade e dark mode)
 -JavaScript (ES Modules)
 -Fake Store API
+
+
+
+
+    
+
+
+  
+
