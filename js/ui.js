@@ -18,16 +18,31 @@ export function criarCard(produto, atualizar) {
             <button class="btn-detalhes">Ver mais</button>
         </div>
     `;
+
     const btnFav = card.querySelector(".btn-fav");
     const favs = lerFavoritos();
-    btnFav.textContent = favs.includes(produto.id) ? "Remover" : "Favoritar";
+
+    // Atualiza estado inicial
+    if (favs.includes(produto.id)) {
+        btnFav.textContent = "Remover";
+        btnFav.classList.add("remover");
+    } else {
+        btnFav.textContent = "Favoritar";
+        btnFav.classList.remove("remover");
+    }
+
+    // Clique no botão
     btnFav.onclick = () => {
         let lista = lerFavoritos();
-        if (lista.includes(produto.id)) lista = lista.filter(id => id !== produto.id);
-        else lista.push(produto.id);
+        if (lista.includes(produto.id)) {
+            lista = lista.filter(id => id !== produto.id);
+        } else {
+            lista.push(produto.id);
+        }
         salvarFavoritos(lista);
         atualizar();
     };
+
     card.querySelector(".btn-detalhes").onclick = () => window.location.href = `detalhes.html?id=${produto.id}`;
     return card;
 }
