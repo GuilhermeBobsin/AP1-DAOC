@@ -22,8 +22,7 @@ export function criarCard(produto, atualizar) {
     const btnFav = card.querySelector(".btn-fav");
     const favs = lerFavoritos();
 
-    // Atualiza estado inicial
-    if (favs.includes(produto.id)) {
+       if (favs.includes(produto.id)) {
         btnFav.textContent = "Remover";
         btnFav.classList.add("remover");
     } else {
@@ -31,7 +30,6 @@ export function criarCard(produto, atualizar) {
         btnFav.classList.remove("remover");
     }
 
-    // Clique no botão
     btnFav.onclick = () => {
         let lista = lerFavoritos();
         if (lista.includes(produto.id)) {

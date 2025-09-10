@@ -8,23 +8,23 @@ body {
   font-family: 'Inter', sans-serif;
   color: #e0e0e0;
   transition: .3s;
-  position: relative; /* necessário para o ::before */
+  position: relative; 
 
   background-color: #121212;
 }
 
 body::before {
   content: "";
-  position: fixed; /* fixa na tela */
+  position: fixed; 
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background: url('./img/logo.png') no-repeat center center;
-  background-size: contain; /* ou cover se quiser preencher */
-  opacity: 0.2; /* aqui você controla a transparência */
-  pointer-events: none; /* permite clicar normalmente nos elementos */
-  z-index: -1; /* coloca atrás do conteúdo */
+  background-size: contain; 
+  opacity: 0.2; 
+  pointer-events: none; 
+  z-index: -1; 
 }
 
 body.claro {
@@ -130,7 +130,7 @@ section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: rgba(31, 31, 31, 0.8); /* 0.8 = 80% opaco, 20% transparente */
+  background: rgba(31, 31, 31, 0.8); 
   border-radius: 12px;
   width: 220px;
   padding: 12px;
@@ -141,7 +141,7 @@ section {
 }
 
 body.claro .card {
-  background: rgba(255, 255, 255, 0.8); /* leve transparência no modo claro */
+  background: rgba(255, 255, 255, 0.8); 
   color: #111;
 }
 
