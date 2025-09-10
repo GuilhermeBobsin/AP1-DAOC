@@ -53,6 +53,7 @@ function montarMenu() {
     todos = [...todosProdutos];
     atualizar();
     mostrarPagina("produtos");
+    if(sel.value) sel.value = "";
   }
   menu.appendChild(btnTodos);
 
