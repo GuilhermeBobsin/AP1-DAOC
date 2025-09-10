@@ -1,4 +1,6 @@
 import { lerFavoritos, salvarFavoritos } from "./storage.js";
+import { mostrarDetalhes } from "./main.js";  
+
 
 function criarEstrelas(rate) {
     const estrelas = Math.round(rate);
@@ -41,7 +43,8 @@ export function criarCard(produto, atualizar) {
         atualizar();
     };
 
-    card.querySelector(".btn-detalhes").onclick = () => window.location.href = `detalhes.html?id=${produto.id}`;
+    card.querySelector(".btn-detalhes").onclick = () => mostrarDetalhes(produto.id);
+
     return card;
 }
 

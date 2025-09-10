@@ -30,9 +30,13 @@ function aplicarTema(tema) {
 function mostrarPagina(nome) {
   secProdutos.classList.add("escondido");
   secFavs.classList.add("escondido");
+  document.getElementById("pagina-detalhes").classList.add("escondido");
+
   if (nome === "produtos") secProdutos.classList.remove("escondido");
   if (nome === "favoritos") secFavs.classList.remove("escondido");
+  if (nome === "detalhes") document.getElementById("pagina-detalhes").classList.remove("escondido");
 }
+
 
 const traducoesCategorias = {
   "electronics": "Eletrônicos",
@@ -45,7 +49,7 @@ function montarMenu() {
   menu.innerHTML = "";
 
   const btnTodos = document.createElement("button");
-  btnTodos.textContent = "Todos";
+  btnTodos.textContent = "Início";
   btnTodos.onclick = () => {
     todos = [...todosProdutos];
     atualizar();
@@ -142,5 +146,34 @@ function atualizar() {
   const favs = todosProdutos.filter(p => favIds.includes(p.id));
   mostrarProdutos(favs, secFavs, atualizar);
 }
+
+async function mostrarDetalhes(id) {
+  loading.style.display = "flex";
+
+  const produto = todosProdutos.find(p => p.id === id);
+  const secDetalhes = document.getElementById("pagina-detalhes");
+
+  if (!produto) {
+    secDetalhes.innerHTML = "<p class='vazio'>Produto não encontrado.</p>";
+    mostrarPagina("detalhes");
+    loading.style.display = "none";
+    return;
+  }
+
+  secDetalhes.innerHTML = `
+    <div class="card card-detalhe">
+      <img src="${produto.image}" alt="${produto.title}">
+      <h2>${produto.title}</h2>
+      <p><strong>Preço:</strong> R$ ${produto.price}</p>
+      <p><strong>Descrição:</strong> ${produto.description}</p>
+      <p><strong>Avaliação:</strong> ⭐ ${produto.rating.rate} (${produto.rating.count})</p>
+    </div>
+  `;
+
+  mostrarPagina("detalhes");
+  loading.style.display = "none";
+}
+
+export { mostrarDetalhes };
 
 carregar();
