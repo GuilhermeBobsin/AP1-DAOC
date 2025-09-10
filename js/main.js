@@ -143,7 +143,7 @@ function atualizar() {
   mostrarProdutos(lista, secProdutos, atualizar);
 
   const favIds = lerFavoritos();
-  const favs = todosProdutos.filter(p => favIds.includes(p.id));
+  let favs = lista.filter(p => favIds.includes(p.id)); 
   mostrarProdutos(favs, secFavs, atualizar);
 }
 
